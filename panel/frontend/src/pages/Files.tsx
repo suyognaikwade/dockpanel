@@ -857,10 +857,9 @@ export default function Files() {
   // Upload Processing
   const handleUploadFiles = async (files: FileList | File[]) => {
     if (!files || files.length === 0) return;
-    const fileArray = Array.from(files);
     setShowUploadDrawer(true);
 
-    for (const file of fileArray) {
+    for (const file of Array.from(files)) {
       const uploadId = `${file.name}-${Date.now()}`;
       setUploadQueue((prev) => [
         ...prev,
@@ -942,6 +941,7 @@ export default function Files() {
       }
     }
 
+    // setUploading(false)
     loadDir(currentPath);
   };
 
